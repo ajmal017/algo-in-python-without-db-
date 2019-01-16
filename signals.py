@@ -103,7 +103,7 @@ def sma_signal(PRICE_SMA50_pct,PRICE_SMA100_pct,PRICE_SMA200_pct,pct_for_sma):
         signal['sma200'] ="SELL_SIGNAL"
 
         # add after commit
-    signal['sma_signal'] ==''
+    signal['sma_signal'] =''
     if signal['sma50'] == "BUY_SIGNAL":
         if signal['sma100'] != "SELL_SIGNAL":
             if signal['sma200'] !="SELL_SIGNAL":
@@ -227,7 +227,7 @@ while(now < till):
         from_datetime = str(datetime.today() - timedelta(days=60))[:10]
         with open('./exchange_symbol_token.pkl','rb') as pkfile:
             exchange_symbol_token_list = pickle.load(pkfile)
-        signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
+        signals_dict = signals(exchange_symbol_token_list,"60minute",from_datetime,2,10)
         with open('./data/signals/hour.json','w') as sigfp:
             json.dump(signals_dict,sigfp)
         sleep(2)
@@ -238,7 +238,7 @@ while(now < till):
         from_datetime = str(datetime.today() - timedelta(days=15))[:10]
         with open('./exchange_symbol_token.pkl','rb') as pkfile:
             exchange_symbol_token_list = pickle.load(pkfile)
-        signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
+        signals_dict = signals(exchange_symbol_token_list,"15minute",from_datetime,1,10)
         with open('./data/signals/15min.json','w') as sigfp:
             json.dump(signals_dict,sigfp)
         sleep(2)
@@ -249,7 +249,7 @@ while(now < till):
         from_datetime = str(datetime.today() - timedelta(days=5))[:10]
         with open('./exchange_symbol_token.pkl','rb') as pkfile:
             exchange_symbol_token_list = pickle.load(pkfile)
-        signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
+        signals_dict = signals(exchange_symbol_token_list,"5minute",from_datetime,0.5,10)
         with open('./data/signals/5min.json','w') as sigfp:
             json.dump(signals_dict,sigfp)
         sleep(2)
@@ -263,7 +263,7 @@ while(now < till):
 
     with open('./exchange_symbol_token.pkl','rb') as pkfile:
         exchange_symbol_token_list = pickle.load(pkfile)
-    signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
+    signals_dict = signals(exchange_symbol_token_list,"minute",from_datetime,0.2,10)
     with open('./data/signals/1min.json','w') as sigfp:
         json.dump(signals_dict,sigfp)
     sleep(2)
