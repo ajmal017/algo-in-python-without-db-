@@ -101,6 +101,32 @@ def sma_signal(PRICE_SMA50_pct,PRICE_SMA100_pct,PRICE_SMA200_pct,pct_for_sma):
         signal['sma200'] = "BUY_SIGNAL"
     elif (PRICE_SMA200_pct > -pct_for_sma) and (PRICE_SMA200_pct <0):
         signal['sma200'] ="SELL_SIGNAL"
+
+        # add after commit
+    signal['sma_signal'] ==''
+    if signal['sma50'] == "BUY_SIGNAL":
+        if signal['sma100'] != "SELL_SIGNAL":
+            if signal['sma200'] !="SELL_SIGNAL":
+                signal['sma_signal'] = 'BUY_SIGNAL'
+    elif signal['sma50'] == "SELL_SIGNAL":
+        if signal['sma100'] != "BUY_SIGNAL":
+            if signal['sma200'] != "BUY_SIGNAL":
+                signal['sma_signal'] = 'SELL_SIGNAL'
+    else:
+        if signal['sma100'] == "BUY_SIGNAL":
+            if signal['sma200'] !="SELL_SIGNAL":
+                signal['sma_signal'] = 'BUY_SIGNAL'
+        elif  signal['sma100'] =="SELL_SIGNAL":
+            if signal['sma200'] != "BUY_SIGNAL":
+                signal['sma_signal'] = 'SELL_SIGNAL'
+        else:
+            if  signal['sma200'] == "BUY_SIGNAL":
+                signal['sma_signal'] = 'BUY_SIGNAL'
+            elif signal['sma200'] =="SELL_SIGNAL":
+                signal['sma_signal'] = 'SELL_SIGNAL'
+            else:
+                signal['sma_signal'] = ''
+
     return signal
 
 
