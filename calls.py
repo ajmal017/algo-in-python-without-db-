@@ -8,7 +8,8 @@
 
 
 
-
+from datetime import datetime
+from time import sleep
 import json
 
 
@@ -117,4 +118,40 @@ def calls_generator(filter_json_file,signals_json_file):
 
     return signals_dict
 
-print(min15_token)
+
+till  = datetime(datetime.now().year,datetime.now().month,datetime.now().day,18,15,20)
+now = datetime.now()
+while(now < till):
+    now = datetime.now()
+
+    # ./data/calls/btst_5min.json
+    btst_5min = calls_generator('./data/filter/btst.json','./data/signals/5min.json')
+    with open('./data/calls/btst_5min.json','w') as btst_5minfile:
+        json.dump(btst_5min,btst_5minfile)
+
+
+    # ./data/calls/btst_15min.json
+    btst_15min = calls_generator('./data/filter/btst.json','./data/signals/15min.json')
+    with open('./data/calls/btst_15min.json','w') as btst_15minfile:
+        json.dump(btst_15min,btst_15minfile)
+
+    # ./data/calls/intraday_1min.json
+    intraday_1min = calls_generator('./data/filter/intraday.json','./data/signals/1min.json')
+    with open('./data/calls/intraday_1min.json','w') as intraday_1minfile:
+        json.dump(intraday_1min,intraday_1minfile)
+
+    # ./data/calls/intraday_5min.json
+    intraday_5min = calls_generator('./data/filter/intraday.json','./data/signals/5min.json')
+    with open('./data/calls/intraday_5min.json','w') as intraday_5minfile:
+        json.dump(intraday_5min,intraday_5minfile)
+
+
+    # ./data/calls/swingtrade_15min.json
+
+
+    # ./data/calls/swingtrade_60min.json
+
+    sleep(20)
+
+
+# print(min15_token)

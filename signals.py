@@ -154,6 +154,7 @@ def signals(exchange_symbol_token_list,time_frame,from_datetime,pct_for_sma,slee
         symbol_dict = {}
         symbol_dict['SMA'] = smas_dict
         symbol_dict['token'] = token
+        symbol_dict['timestamp'] = str(datetime.now())
         exchange_dict[symbol] = symbol_dict
         if exchange == "NSE":
             signals['NSE'] = exchange_dict

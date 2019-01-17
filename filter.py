@@ -32,23 +32,33 @@ def filter(higher_time_frame_file,lower_time_frame_file):
     for stock in daystocks['NSE']:
         # print(daystocks['NSE'][stock]['SMA']['sma50'])
         token = daystocks['NSE'][stock]['token']
+    
         # print('-'*50)
 
         stocksignals = {}
         stocksignals['symbol']=stock
         stocksignals['token'] = token
 
+
         if daystocks['NSE'][stock]['SMA']['sma50'] == 'BUY_SIGNAL':
             if hourstocks['NSE'][stock]['SMA']['sma50'] == 'BUY_SIGNAL':
                 conf_buy_list.append(stocksignals)
+                stocksignals['timestamp-higher'] = daystocks['NSE'][stock]['timestamp']
+                stocksignals['timestamp-lower'] = hourstocks['NSE'][stock]['timestamp']
             elif hourstocks['NSE'][stock]['SMA']['sma50'] == '':
                 unconf_buy_list.append(stocksignals)
+                stocksignals['timestamp-higher'] = daystocks['NSE'][stock]['timestamp']
+                stocksignals['timestamp-lower'] = hourstocks['NSE'][stock]['timestamp']
 
         elif daystocks['NSE'][stock]['SMA']['sma50'] == 'SELL_SIGNAL':
             if hourstocks['NSE'][stock]['SMA']['sma50'] == 'SELL_SIGNAL':
                 conf_sell_list.append(stocksignals)
+                stocksignals['timestamp-higher'] = daystocks['NSE'][stock]['timestamp']
+                stocksignals['timestamp-lower'] = hourstocks['NSE'][stock]['timestamp']
             elif hourstocks['NSE'][stock]['SMA']['sma50'] == '':
                 unconf_sell_list.append(stocksignals)
+                stocksignals['timestamp-higher'] = daystocks['NSE'][stock]['timestamp']
+                stocksignals['timestamp-lower'] = hourstocks['NSE'][stock]['timestamp']
 
     unconf_dict ={}
     unconf_dict['BUY'] = unconf_buy_list
