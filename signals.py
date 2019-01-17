@@ -170,12 +170,13 @@ def signals(exchange_symbol_token_list,time_frame,from_datetime,pct_for_sma,slee
 zerodha = Zerodha(public_token,access_token,userid)
 
 
-from_datetime = str(datetime.today() - timedelta(days=300))[:10]
-with open('./exchange_symbol_token.pkl','rb') as pkfile:
-    exchange_symbol_token_list = pickle.load(pkfile)
-signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
-with open('./data/signals/day.json','w') as sigfp:
-    json.dump(signals_dict,sigfp)
+# for ./data/signals/day.json
+# from_datetime = str(datetime.today() - timedelta(days=300))[:10]
+# with open('./exchange_symbol_token.pkl','rb') as pkfile:
+#     exchange_symbol_token_list = pickle.load(pkfile)
+# signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
+# with open('./data/signals/day.json','w') as sigfp:
+#     json.dump(signals_dict,sigfp)
  
 
 # $$$$$$$$$$$$$$$$$$$$$$
@@ -185,14 +186,15 @@ if datetime.now() < datetime(datetime.now().year,datetime.now().month,datetime.n
 if datetime.now() < datetime(datetime.now().year,datetime.now().month,datetime.now().day,8,0,0):
     # run week
     pass
-if datetime.now() < datetime(datetime.now().year,datetime.now().month,datetime.now().day,9,10,0):
+# if datetime.now() < datetime(datetime.now().year,datetime.now().month,datetime.now().day,9,10,0):
     # run day
-    from_datetime = str(datetime.today() - timedelta(days=300))[:10]
-    with open('./exchange_symbol_token.pkl','rb') as pkfile:
-        exchange_symbol_token_list = pickle.load(pkfile)
-    signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
-    with open('./data/signals/day.json','w') as sigfp:
-        json.dump(signals_dict,sigfp)
+    # # for ./data/signals/day.json
+    # from_datetime = str(datetime.today() - timedelta(days=300))[:10]
+    # with open('./exchange_symbol_token.pkl','rb') as pkfile:
+    #     exchange_symbol_token_list = pickle.load(pkfile)
+    # signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
+    # with open('./data/signals/day.json','w') as sigfp:
+    #     json.dump(signals_dict,sigfp)
     
 
 
@@ -212,13 +214,14 @@ while(now < till):
 
     if ((min%30) >= 20) and ((min%30) <= 30):
         # day - 2 times in an hour
-        print("  in day",datetime.now())
-        from_datetime = str(datetime.today() - timedelta(days=300))[:10]
-        with open('./exchange_symbol_token.pkl','rb') as pkfile:
-            exchange_symbol_token_list = pickle.load(pkfile)
-        signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
-        with open('./data/signals/day.json','w') as sigfp:
-            json.dump(signals_dict,sigfp)
+        # for ./data/signals/day.json
+        # print("  in day",datetime.now())
+        # from_datetime = str(datetime.today() - timedelta(days=300))[:10]
+        # with open('./exchange_symbol_token.pkl','rb') as pkfile:
+        #     exchange_symbol_token_list = pickle.load(pkfile)
+        # signals_dict = signals(exchange_symbol_token_list,"day",from_datetime,5,10)
+        # with open('./data/signals/day.json','w') as sigfp:
+        #     json.dump(signals_dict,sigfp)
         sleep(2)
         
     if ((min%20) >= 15) and ((min%20) <= 20):
@@ -227,7 +230,7 @@ while(now < till):
         from_datetime = str(datetime.today() - timedelta(days=60))[:10]
         with open('./exchange_symbol_token.pkl','rb') as pkfile:
             exchange_symbol_token_list = pickle.load(pkfile)
-        signals_dict = signals(exchange_symbol_token_list,"60minute",from_datetime,2,10)
+        signals_dict = signals(exchange_symbol_token_list,"60minute",from_datetime,2,20)
         with open('./data/signals/hour.json','w') as sigfp:
             json.dump(signals_dict,sigfp)
         sleep(2)
@@ -238,7 +241,7 @@ while(now < till):
         from_datetime = str(datetime.today() - timedelta(days=15))[:10]
         with open('./exchange_symbol_token.pkl','rb') as pkfile:
             exchange_symbol_token_list = pickle.load(pkfile)
-        signals_dict = signals(exchange_symbol_token_list,"15minute",from_datetime,1,10)
+        signals_dict = signals(exchange_symbol_token_list,"15minute",from_datetime,1,20)
         with open('./data/signals/15min.json','w') as sigfp:
             json.dump(signals_dict,sigfp)
         sleep(2)
@@ -249,7 +252,7 @@ while(now < till):
         from_datetime = str(datetime.today() - timedelta(days=5))[:10]
         with open('./exchange_symbol_token.pkl','rb') as pkfile:
             exchange_symbol_token_list = pickle.load(pkfile)
-        signals_dict = signals(exchange_symbol_token_list,"5minute",from_datetime,0.5,10)
+        signals_dict = signals(exchange_symbol_token_list,"5minute",from_datetime,0.5,20)
         with open('./data/signals/5min.json','w') as sigfp:
             json.dump(signals_dict,sigfp)
         sleep(2)
@@ -263,7 +266,7 @@ while(now < till):
 
     with open('./exchange_symbol_token.pkl','rb') as pkfile:
         exchange_symbol_token_list = pickle.load(pkfile)
-    signals_dict = signals(exchange_symbol_token_list,"minute",from_datetime,0.2,10)
+    signals_dict = signals(exchange_symbol_token_list,"minute",from_datetime,0.2,20)
     with open('./data/signals/1min.json','w') as sigfp:
         json.dump(signals_dict,sigfp)
     sleep(2)

@@ -2,8 +2,8 @@
 local_server=True,
 local_uri= "",
 
-public_token= "CH9fntrriTjlh2g9mKj6Cxu5LBJ33WKc"
-access_token ="M0qPCw2xFsj6i1kKZlgapDJZoCrVN28p"
+public_token= "7oCbkZfcfr0KJfNxZ9ezsFzBLxSlcez1"
+access_token ="IQ7RlojtltMRbKRH1GCVpM0xlF2kV6Ex"
 userid ='ZT8569'
 
 db_user ='root'
