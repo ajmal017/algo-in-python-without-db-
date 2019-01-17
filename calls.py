@@ -42,7 +42,6 @@ def calls_generator(filter_json_file,signals_json_file):
                     for btst in btst_dict['NSE']['confirmed']['BUY']:
                         symbol = btst['symbol']
                         token = btst['token']
-                        print('-'*50)
 
                         min15_signal = min15_dict['NSE'][symbol]['SMA']['sma_signal']
                         min15_token = min15_dict['NSE'][symbol]['token']
@@ -57,13 +56,12 @@ def calls_generator(filter_json_file,signals_json_file):
                     for btst in btst_dict['NSE']['confirmed']['SELL']:
                         symbol = btst['symbol']
                         token = btst['token']
-                        print('-'*50)
 
                         min15_signal = min15_dict['NSE'][symbol]['SMA']['sma_signal']
                         min15_token = min15_dict['NSE'][symbol]['token']
 
                         if token == min15_token:
-                            if min15_signal == 'SELL':
+                            if min15_signal == 'SELL_SIGNAL':
                                 symbol_dict = {}
                                 symbol_dict['symbol'] = symbol
                                 symbol_dict['token'] = token
@@ -75,7 +73,6 @@ def calls_generator(filter_json_file,signals_json_file):
                     for btst in btst_dict['NSE']['unconfirmed']['BUY']:
                         symbol = btst['symbol']
                         token = btst['token']
-                        print('-'*50)
 
                         min15_signal = min15_dict['NSE'][symbol]['SMA']['sma_signal']
                         min15_token = min15_dict['NSE'][symbol]['token']
@@ -90,38 +87,61 @@ def calls_generator(filter_json_file,signals_json_file):
                     for btst in btst_dict['NSE']['unconfirmed']['SELL']:
                         symbol = btst['symbol']
                         token = btst['token']
-                        print('-'*50)
 
                         min15_signal = min15_dict['NSE'][symbol]['SMA']['sma_signal']
                         min15_token = min15_dict['NSE'][symbol]['token']
 
                         if token == min15_token:
-                            if min15_signal == 'SELL':
+                            if min15_signal == 'SELL_SIGNAL':
                                 symbol_dict = {}
                                 symbol_dict['symbol'] = symbol
                                 symbol_dict['token'] = token
                                 unconf_15min_sell_list.append(symbol_dict)
+
+    print(unconf_15min_buy_list)
+    print(unconf_15min_sell_list)
+    print(conf_15min_buy_list)
+    print(conf_15min_sell_list)
+
+    print('='*50)
     unconf_min15_dict ={}
     unconf_min15_dict['BUY'] = unconf_15min_buy_list
     unconf_min15_dict['SELL'] = unconf_15min_sell_list
+
+    print(unconf_min15_dict)
 
     conf_min15_dict ={}
     conf_min15_dict['BUY'] = conf_15min_buy_list
     conf_min15_dict['SELL'] = conf_15min_sell_list
 
+    print(conf_min15_dict)
+
     conf_unconf_dict ={}
     conf_unconf_dict['confirmed'] = conf_min15_dict
     conf_unconf_dict['unconfirmed'] = unconf_min15_dict
 
+    print('%'*50)
+    print(conf_unconf_dict)
+
     signals_dict ={}
-    signals_dict['NSE'] = signals_dict
+    signals_dict['NSE'] = conf_unconf_dict
+
+    print('$'*50)
+    print(signals_dict)
 
     return signals_dict
+
+# # # testing 
+# data = calls_generator('./data/filter/btst.json','./data/signals/5min.json')
+
+# # print(data)
+
 
 
 till  = datetime(datetime.now().year,datetime.now().month,datetime.now().day,18,15,20)
 now = datetime.now()
-while(now < till):
+t = True
+while t:
     now = datetime.now()
 
     # ./data/calls/btst_5min.json
@@ -151,7 +171,8 @@ while(now < till):
 
     # ./data/calls/swingtrade_60min.json
 
-    sleep(20)
+    t = False
+    # sleep(20)
 
 
 # print(min15_token)

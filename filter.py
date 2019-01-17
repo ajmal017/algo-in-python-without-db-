@@ -81,13 +81,15 @@ def filter(higher_time_frame_file,lower_time_frame_file):
 # print(final_signal)
 
 while True:
-    btst_filter_json = filter('./data/signals/day.json','./data/signals/60min.json')
+    btst_filter_json = filter('./data/signals/day.json','./data/signals/hour.json')
     with open('./data/filter/btst.json','w') as wfp:
         json.dump(btst_filter_json ,wfp)
 
-    intraday_filter_json = filter('./data/signals/60min.json','./data/signals/15min.json')
+    intraday_filter_json = filter('./data/signals/hour.json','./data/signals/15min.json')
     with open('./data/filter/intraday.json','w') as wfp:
         json.dump(intraday_filter_json ,wfp)
+  
+
 
     sleep(20)
 
