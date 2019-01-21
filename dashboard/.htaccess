@@ -1,0 +1,30 @@
+<Files ~ "^\.htaccess">
+  Order allow,deny
+  Deny from all
+</Files>
+
+
+<Files  ~ "\.inc$">
+  Order allow,deny
+  Deny from all
+</Files>
+
+
+<Files  ~ "\.py$">
+  Order allow,deny
+  Deny from all
+</Files>
+
+
+<files ~ "\.json$">
+   Order allow,deny
+   Deny from all
+</files>
+
+
+<files ~ "\.csv$">
+   Order allow,deny
+   Deny from all
+</files>
+
+

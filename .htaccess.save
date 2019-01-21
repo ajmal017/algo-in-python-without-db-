@@ -1,0 +1,25 @@
+<Files ~ "^\.htaccess">
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files  ~ "\.inc$">
+  Order allow,deny
+  Deny from all
+</Files>
+
+
+<Files  ~ "\.py$">
+  Order allow,deny
+  Deny from all
+</Files>
+
+        <Directory /var/www/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Order allow,deny
+                allow from all
+                # Uncomment this directive is you want to see apache2's
+                # default start page (in /apache2-default) when you go to /
+                #RedirectMatch ^/$ /apache2-default/
+        </Directory>
